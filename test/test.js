@@ -6,8 +6,7 @@ const testme = function(){
 	var value = Math.random().toString(36).substring(7);
 	var key = Math.random().toString(36).substring(7);
 	lru.set(key,value );
-	var test = lru.get(key);
-	console.log(test);
+	console.log(lru.size);
 }
 
 setInterval(testme, 5000);

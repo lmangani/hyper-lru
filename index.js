@@ -30,7 +30,16 @@ class HyperLRU {
 				this.hyper = socket;
 				this.hyper.on('data', function(data) {
 					const obj = JSON.parse(data.toString());
-					this._hset(obj[0], obj[1]);
+					switch(obj.t) {
+					  case 'set':
+					    this.set(obj.key, obj.value, true);
+					    break;
+					  case 'delete':
+					    this.delete(obj.key, true);
+					    break;
+					  default:
+					    break;
+					}
 
 				}.bind(this));
 
@@ -66,14 +75,9 @@ class HyperLRU {
 			this.cache = new Map();
 		}
 	}
-	_set(key, value) {
+	_set(key, value, peer) {
 		this.cache.set(key, value);
 		this._size++;
-
-
-		if (this.hyper && key && value) {
-			this.hyper.write(JSON.stringify({key:value}) + '\n');
-		}
 
 		if (this._size >= this.maxSize) {
 			this._size = 0;
@@ -96,11 +100,15 @@ class HyperLRU {
 		}
 	}
 
-	set(key, value) {
+	set(key, value, peer) {
 		if (this.cache.has(key)) {
 			this.cache.set(key, value);
 		} else {
 			this._set(key, value);
+		}
+
+		if (this.hyper && key && value && !peer) {
+			this.hyper.write(JSON.stringify({t:'set', key:key, value:value}) + '\n');
 		}
 
 		return this;
@@ -120,10 +128,14 @@ class HyperLRU {
 		}
 	}
 
-	delete(key) {
+	delete(key, peer) {
 		const deleted = this.cache.delete(key);
 		if (deleted) {
 			this._size--;
+		}
+
+		if (this.hyper && key && !peer) {
+			this.hyper.write(JSON.stringify({t:'delete', key:key}) + '\n');
 		}
 
 		return this.oldCache.delete(key) || deleted;

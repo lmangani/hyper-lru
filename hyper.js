@@ -23,7 +23,7 @@ exports.connect = function (topic, cb) {
 
   net.on('connection', (socket, details) => {
     if (details.peer)
-    console.log('connected to', details.peer.host, details.peer.port)
+    console.error('hyper-lru connected to', details.peer.host, details.peer.port)
     cb(null, socket)
 
     // we have received everything
@@ -33,7 +33,6 @@ exports.connect = function (topic, cb) {
 
     socket.on('error', function (e) {
       console.error(e);
-      // if (hyperTopic) net.leave(hyperTopic)
     })
   })
 }
