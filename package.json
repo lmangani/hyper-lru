@@ -1,0 +1,42 @@
+{
+	"name": "hyper-lru",
+	"version": "1.0.5",
+	"description": "Hyper “Least Recently Used” (LRU) cache",
+	"license": "MIT",
+	"repository": "lmangani/hyper-lru",
+	"funding": "https://github.com/sponsors/lmangani",
+	"author": {
+		"name": "Lorenzo Mangani",
+		"email": "lorenzo.mangani@gmail.com"
+	},
+	"scripts": {
+		"test": "nyc ava"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"lru",
+		"quick",
+		"cache",
+		"caching",
+		"least",
+		"recently",
+		"used",
+		"fast",
+		"map",
+		"hash",
+		"buffer"
+	],
+	"dependencies": {
+		"@hyperswarm/network": "^2.1.0",
+		"duplexify": "^4.1.1"
+	},
+	"devDependencies": {
+		"ava": "^2.4.0",
+		"nyc": "^15.1.0",
+		"tsd": "^0.13.1",
+		"xo": "^0.35.0"
+	}
+}
