@@ -6,7 +6,7 @@
 
 Based on [Quick-LRU](https://github.com/sindresorhus/quick-lru) and powered by [HyperSwarm](https://hypercore-protocol.org/) 
 
-Hyper-LRU instances interested in the same topic will discover each other using DHT and exchange set local set events in the swarm. 
+Hyper-LRU instances will discover each other using DHT topics and exchange set `set` events with the swarm. 
 
 ## Install
 
