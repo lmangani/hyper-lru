@@ -1,10 +1,10 @@
-<img src="https://hypercore-protocol.org/images/hypercore-protocol.png" width=100>
+<img src="https://hypercore-protocol.org/images/hypercore-protocol.png" width=130>
 
 # hyper-lru
 
 > Decentralized [“Least Recently Used” (LRU) cache](https://en.m.wikipedia.org/wiki/Cache_replacement_policies#Least_Recently_Used_.28LRU.29) 
 
-Based on [Quick-LRU](https://github.com/sindresorhus/quick-lru) and powered by [HyperSwarm](https://hypercore-protocol.org/) 
+Fork of [Quick-LRU](https://github.com/sindresorhus/quick-lru) powered by the [Hyper Protocol](https://hypercore-protocol.org/) 
 
 Hyper-LRU instances will discover each other using DHT topics and exchange cache events with the swarm. 
 
