@@ -1,6 +1,6 @@
 {
-	"name": "hyper-lru",
-	"version": "1.0.5",
+	"name": "@qxip/hyper-lru",
+	"version": "1.0.7",
 	"description": "Hyper “Least Recently Used” (LRU) cache",
 	"license": "MIT",
 	"repository": "lmangani/hyper-lru",
@@ -14,9 +14,11 @@
 	},
 	"files": [
 		"index.js",
+		"hyper.js",
 		"index.d.ts"
 	],
 	"keywords": [
+		"hyper",
 		"lru",
 		"quick",
 		"cache",

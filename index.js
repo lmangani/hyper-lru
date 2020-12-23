@@ -1,5 +1,7 @@
 'use strict';
 
+const net = require('./hyper.js');
+
 class HyperLRU {
 	constructor(options = {}) {
 		if (!(options.maxSize && options.maxSize > 0)) {
@@ -19,7 +21,6 @@ class HyperLRU {
 				throw new TypeError('`hyper` must be a unique stringer longer than 8 chars');
 			}
 
-			const net = require('./hyper.js');
 			net.connect(options.hyper, (err, socket) => {
 				if (err) {
 					console.error('`hyper` connectivity failure');
