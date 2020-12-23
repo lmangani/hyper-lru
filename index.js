@@ -21,19 +21,25 @@ class HyperLRU {
 				throw new TypeError('`hyper` must be a unique stringer longer than 8 chars');
 			}
 
-			net.connect(options.hyper, (err, socket) => {
+			try {
+			  net.connect(options.hyper, (err, socket) => {
 				if (err) {
 					console.error('`hyper` connectivity failure');
 				}
 
 				this.hyper = socket;
-			});
+				this.hyper.on('data', function(data) {
+					const obj = JSON.parse(data.toString());
+					this._hset(obj[0], obj[1]);
 
-			this.hyper.on('data', function(data) {
-				const obj = JSON.parse(data);
-				this._set(obj[0], obj[1]);
+				}.bind(this));
 
-			});
+			  });
+
+			} catch(e) {
+				console.error(e);
+				this.hyper = false
+			}
 
 		}
 
@@ -49,12 +55,24 @@ class HyperLRU {
 		}
 	}
 
+	_hset(key, value) {
+		this.cache.set(key, value);
+		this._size++;
+
+		if (this._size >= this.maxSize) {
+			this._size = 0;
+			this._emitEvictions(this.oldCache);
+			this.oldCache = this.cache;
+			this.cache = new Map();
+		}
+	}
 	_set(key, value) {
 		this.cache.set(key, value);
 		this._size++;
 
-		if (this.hyper) {
-			this.hyper.write('["' + key + '","' + JSON.stringify(value) + '"]');
+
+		if (this.hyper && key && value) {
+			this.hyper.write(JSON.stringify({key:value}) + '\n');
 		}
 
 		if (this._size >= this.maxSize) {

@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const duplexify = require('duplexify');
-const hyperswarm = require('@hyperswarm/network');
+const hyperswarm = require('hyperswarm');
 
 function initiate (topic, opts) {
   let net = hyperswarm()
@@ -12,7 +12,10 @@ function initiate (topic, opts) {
   return net
 }
 
+var hyperTopic;
+
 exports.connect = function (topic, cb) {
+  hyperTopic = topic;
   var net = initiate(topic, {
     lookup: true, // find & connect to peers
     announce: true
@@ -24,8 +27,13 @@ exports.connect = function (topic, cb) {
     cb(null, socket)
 
     // we have received everything
-    socket.on('end', function () {
-      net.leave(topic)
+    socket.on('end', function (topic) {
+      if (topic) net.leave(topic)
+    })
+
+    socket.on('error', function (e) {
+      console.error(e);
+      // if (hyperTopic) net.leave(hyperTopic)
     })
   })
 }

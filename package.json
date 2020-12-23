@@ -1,6 +1,6 @@
 {
 	"name": "@qxip/hyper-lru",
-	"version": "1.0.7",
+	"version": "1.0.9",
 	"description": "Hyper “Least Recently Used” (LRU) cache",
 	"license": "MIT",
 	"repository": "lmangani/hyper-lru",
@@ -32,8 +32,8 @@
 		"buffer"
 	],
 	"dependencies": {
-		"@hyperswarm/network": "^2.1.0",
-		"duplexify": "^4.1.1"
+		"duplexify": "^4.1.1",
+		"hyperswarm": "^2.15.2"
 	},
 	"devDependencies": {
 		"ava": "^2.4.0",
