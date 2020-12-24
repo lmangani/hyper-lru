@@ -6,13 +6,14 @@
 
 Experimental Fork of [Quick-LRU](https://github.com/sindresorhus/quick-lru) powered by the [Hyper Protocol](https://hypercore-protocol.org/) 
 
-Hyper-LRU instances will discover each other using DHT topics and exchange cache events with the swarm. 
+Hyper-LRU instances can discover each other using DHT topics and exchange cache events with the swarm. 
 
 ### Distributed holepunching through the Hyperswarm DHT
 
-![hyperswarm](https://user-images.githubusercontent.com/1423657/103099166-b2031e00-460d-11eb-8023-786499fa6731.gif)
-
 _Hyperswarm diagram by @mafintosh_
+
+<img src="https://user-images.githubusercontent.com/1423657/103099166-b2031e00-460d-11eb-8023-786499fa6731.gif" width=600>
+
 
 ## Install
 
