@@ -19,15 +19,23 @@ $ npm install hyper-lru
 ```js
 const HyperLRU = require('hyper-lru');
 
-const lru = new HyperLRU({maxSize: 1000, hyper: 'mysupersecretlonghash' });
+// Start multiple instances of HyperLRU on different hosts
+const lru1 = new HyperLRU({maxSize: 100, hyper: 'mysupersecretlonghash' });
+const lru2 = new HyperLRU({maxSize: 100, hyper: 'mysupersecretlonghash' });
 
-lru.set('🦄', '🌈');
-
-lru.has('🦄');
+// Cache using the 1st LRU
+lru1.set('🦄', '🌈');
+lru1.has('🦄');
 //=> true
-
-lru.get('🦄');
+lru1.get('🦄');
 //=> '🌈'
+
+// Query using the 2nd LRU
+lru2.has('🦄');
+//=> true
+lru2.get('🦄');
+//=> '🌈'
+
 ```
 
 ## API
