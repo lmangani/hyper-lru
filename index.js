@@ -29,6 +29,7 @@ class HyperLRU {
 
 				this.hyper = socket;
 				this.hyper.on('data', function(data) {
+				   try {
 					const obj = JSON.parse(data.toString());
 					switch(obj.t) {
 					  case 'set':
@@ -40,6 +41,7 @@ class HyperLRU {
 					  default:
 					    break;
 					}
+				  } catch(e) { console.error('not json', data.toString()); }
 
 				}.bind(this));
 

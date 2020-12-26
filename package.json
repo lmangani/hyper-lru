@@ -1,6 +1,6 @@
 {
 	"name": "@qxip/hyper-lru",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "Hyper “Least Recently Used” (LRU) cache",
 	"license": "MIT",
 	"repository": "lmangani/hyper-lru",
