@@ -12,7 +12,7 @@ Hyper-LRU instances can discover each other using DHT topics and exchange cache 
 
 _Hyperswarm diagram by @mafintosh_
 
-<img src="https://user-images.githubusercontent.com/1423657/103103681-049b0500-4623-11eb-96ea-3a56a753987a.gif" width=600>
+<img src="https://user-images.githubusercontent.com/1423657/103103681-049b0500-4623-11eb-96ea-3a56a753987a.gif" width=500>
 
 
 ## Install
