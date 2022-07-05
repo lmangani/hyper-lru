@@ -33,7 +33,7 @@
 	],
 	"dependencies": {
 		"duplexify": "^4.1.1",
-		"hyperswarm": "^2.15.2"
+		"hyperswarm": "^4.1.0"
 	},
 	"devDependencies": {
 		"ava": "^4.3.0",
